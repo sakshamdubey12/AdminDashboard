@@ -18,6 +18,7 @@ const UserTable = ({}) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
   const roles = useSelector((state) => state.roles.roles);
+  console.log(users,roles)
 
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
 
@@ -75,6 +76,7 @@ const UserTable = ({}) => {
   // Handle adding a new user
   const handleAddUser = () => {
     if (!newUserName.trim() || !newUserRole.trim() || !newUserPassword.trim()) {
+      console.log(newUserName,newUserRole,newUserPassword)
       alert("Please fill out all required fields.");
       return;
     }
@@ -446,6 +448,8 @@ const UserTable = ({}) => {
                 onChange={(e) => setNewUserRole(e.target.value)}
                 className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
+                  <option disabled selected >Select Role</option>
+
                 {roles.map((role) => (
                   <option key={role.id} value={role.name}>
                     {role.name}
